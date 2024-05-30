@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-use GuzzleHttp\Middleware;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\StatsController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +58,7 @@ Route::group(['auth'], function () {
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::get('/dashboard', 'DashboardController')->name('dashboard');
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
@@ -80,11 +80,11 @@ Route::group(['auth'], function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/dashboard', 'Admin\DashboardController');
+        Route::get('/dashboard', DashboardController::class);
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('/stats', 'Admin\StatsController');
+        Route::get('/stats', StatsController::class);
 
         // End of the /admin Route Group
     })->middleware('is_admin');
